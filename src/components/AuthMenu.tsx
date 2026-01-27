@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import { useState, useRef, useEffect } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
-import Image from "next/image";
-import { LogOut } from "lucide-react";
+import { useState, useRef, useEffect } from "react"
+import Image from "next/image"
+import { LogOut } from "lucide-react"
 
+import { useAuth } from "@/context/AuthContext"
+import { signInWithGoogle, logout } from "@/lib/googleAuth"
 
-
-const AuthMenu= ({ mobile = false }) => {
-  const { data: session, status } = useSession();
-  const [open, setOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+const AuthMenu = ({ mobile = false }) => {
+  const { user, loading } = useAuth()
+  const [open, setOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -19,29 +19,31 @@ const AuthMenu= ({ mobile = false }) => {
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node)
       ) {
-        setOpen(false);
+        setOpen(false)
       }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
-  if (status === "loading")
-    return <div className="text-sm text-muted-foreground">Loading...</div>;
+  if (loading)
+    return <div className="text-sm text-muted-foreground">Loading...</div>
 
-  if (!session) {
+  // 🚪 NOT LOGGED IN
+  if (!user) {
     return (
       <button
-        onClick={() => signIn("google", undefined, { prompt: 'select_account' })}
+        onClick={signInWithGoogle}
         className={`${
           mobile ? "w-full px-4 py-2" : "ml-6 px-5 py-2"
-        } bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors`}
+        } ml-4 px-6 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-semibold shadow-warm hover:shadow-glow transition-all duration-300 hover:scale-105`}
       >
         Sign In
       </button>
-    );
+    )
   }
 
+  // ✅ LOGGED IN
   return (
     <div className={`${mobile ? "mt-4" : "relative ml-6"}`} ref={dropdownRef}>
       {!mobile && (
@@ -50,8 +52,8 @@ const AuthMenu= ({ mobile = false }) => {
           className="flex items-center rounded-full border border-border p-1"
         >
           <Image
-            src={session.user?.image ?? "/default-avatar.png"}
-            alt={session.user?.name ?? "User"}
+            src={user.photoURL ?? "/default-avatar.png"}
+            alt={user.displayName ?? "User"}
             width={40}
             height={40}
             className="rounded-full"
@@ -73,23 +75,24 @@ const AuthMenu= ({ mobile = false }) => {
             } text-center`}
           >
             <Image
-              src={session.user?.image ?? "/default-avatar.png"}
-              alt={session.user?.name ?? "User"}
+              src={user.photoURL ?? "/default-avatar.png"}
+              alt={user.displayName ?? "User"}
               width={mobile ? 50 : 60}
-              height={mobile ? 50 : 40}
+              height={mobile ? 50 : 60}
               className="rounded-full mx-auto border border-border"
             />
-            <h2 className="font-semibold mt-2">{session.user?.name}</h2>
+            <h2 className="font-semibold mt-2">
+              {user.displayName}
+            </h2>
             <h4 className="text-sm text-center text-muted-foreground">
-              {session.user?.email}
+              {user.email}
             </h4>
           </div>
+
           <button
-            onClick={() => {
-              signOut({ callbackUrl: "/" });
-              setTimeout(() => {
-                window.open("https://accounts.google.com/Logout", "_blank");
-              }, 300);
+            onClick={async () => {
+              await logout()
+              setOpen(false)
             }}
             className={`${
               mobile
@@ -102,7 +105,7 @@ const AuthMenu= ({ mobile = false }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default AuthMenu;
+export default AuthMenu

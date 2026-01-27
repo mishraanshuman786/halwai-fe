@@ -56,7 +56,7 @@ const Navigation = () => {
             <AuthMenu />
 
             <a
-              href="https://wa.me/919811820494"
+              href="https://wa.me/918882164863"
               target="_blank"
               rel="noopener noreferrer"
               className="ml-4 px-6 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-semibold shadow-warm hover:shadow-glow transition-all duration-300 hover:scale-105"
@@ -93,7 +93,7 @@ const Navigation = () => {
             ))}
 
             <a
-              href="https://wa.me/919811820494"
+              href="https://wa.me/918882164863"
               target="_blank"
               rel="noopener noreferrer"
               className="block mt-4 px-4 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-semibold text-center"

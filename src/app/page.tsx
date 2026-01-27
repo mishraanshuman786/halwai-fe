@@ -56,9 +56,14 @@ const Home = () => {
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              <a
+              {/* <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLSeATpkJflVwzUkF5LKhDGlu87Nz7JBkzheor8GNwDmcdHrbYQ/viewform?fbclid=PAZXh0bgNhZW0CMTEAAad7xqXiJKMgeRLACvNBULHsUG_WEiy5y17CIkNtPUrwJlIqpgX87WgJfVZ7Rw_aem_nC4Arssa-K3psxE-5aKEIA"
                 target="_blank"
+                rel="noopener noreferrer"
+              > */}
+                  <a
+                href="/enquiry"
+                target="_self"
                 rel="noopener noreferrer"
               >
                 <Button

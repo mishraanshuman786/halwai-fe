@@ -115,7 +115,7 @@ const About = () => {
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             Connect with our verified halwais and let us help make your celebration memorable
           </p>
-          <Link href="https://wa.me/919811820494" target="_blank" rel="noopener noreferrer">
+          <Link href="https://wa.me/918882164863" target="_blank" rel="noopener noreferrer">
             <button className="px-8 py-4 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-semibold shadow-warm hover:shadow-glow transition-all duration-300 hover:scale-105">
               Get Started Today
             </button>
