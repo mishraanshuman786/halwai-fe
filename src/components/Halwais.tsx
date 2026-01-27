@@ -152,7 +152,7 @@ const Halwais = () => {
 
                   {/* CTA */}
                   <a
-                    href={`https://wa.me/919811820494?text=Hi, I'm interested in ${halwai.name} for my event`}
+                    href={`https://wa.me/918882164863?text=Hi, I'm interested in ${halwai.name} for my event`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block"

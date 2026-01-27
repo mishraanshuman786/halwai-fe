@@ -47,7 +47,7 @@ const Enquiry = () => {
       const message = `*New Contact Form Submission*%0A%0A*Name:* ${encodeURIComponent(validated.name)}%0A*Email:* ${encodeURIComponent(validated.email)}%0A*Phone:* ${encodeURIComponent(validated.phone)}%0A*Message:* ${encodeURIComponent(validated.message)}`;
       
       // Open WhatsApp
-      window.open(`https://wa.me/919811820494?text=${message}`, '_blank');
+      window.open(`https://wa.me/918882164863?text=${message}`, '_blank');
 
       toast({
         title: "Message sent!",
